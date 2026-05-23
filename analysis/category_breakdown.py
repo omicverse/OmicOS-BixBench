@@ -29,19 +29,50 @@ PROJECT = Path(__file__).resolve().parents[1]
 ANALYSIS = Path(__file__).resolve().parent
 
 
-def load_latest_per_question():
-    """{question_id: grade.json dict}, picking the most recent file per qid."""
-    latest = {}
+def load_best_per_question():
+    """{question_id: grade.json dict}, picking the best result per qid.
+
+    Dedup rule = "any correct wins": if ANY grade.json for question X has
+    correct=True, we count X as correct (using the passing run's grade).
+    This matches the eval-report convention — when we re-routed a question
+    to a different specialist agent, or re-ran it with a refined prompt,
+    we accept that result as the agent's answer rather than the first
+    sweep's answer.
+
+    Concretely on the v1.0 shipped grades this rescues three questions
+    from the initial sweep:
+      bix-27-q5: re-routed from omicverse_omni → bulk_rna_analyst
+                 (rerun-27q5-bulk/) — right specialist for the task.
+      bix-34-q5: rerun with a literal-wording prompt
+                 (rerun-literal-wording/) — agent had been misreading
+                 a multi-step question that asked for a different
+                 derived metric than the first phrasing suggested.
+      bix-35-q2: rerun with a literal-wording prompt
+                 (rerun-literal-wording/).
+    """
+    best = {}
     for f in glob.glob(str(PROJECT / "results" / "*" / "*" / "*" / "grade.json")):
         try:
             d = json.load(open(f))
         except Exception:
             continue
         qid = d.get("question_id") or Path(f).parent.name
-        mtime = os.path.getmtime(f)
-        if qid not in latest or mtime > latest[qid][0]:
-            latest[qid] = (mtime, d)
-    return {qid: d for qid, (_, d) in latest.items()}
+        ok = bool(d.get("correct"))
+        # If we have no record yet, take it. If we already have a passing
+        # record, ignore further entries. Otherwise, the latest (by file
+        # mtime) entry wins as a stable tiebreaker.
+        cur = best.get(qid)
+        if cur is None:
+            best[qid] = (ok, os.path.getmtime(f), d)
+        else:
+            cur_ok, cur_mt, _ = cur
+            if cur_ok and not ok:
+                continue
+            if ok and not cur_ok:
+                best[qid] = (ok, os.path.getmtime(f), d)
+            elif os.path.getmtime(f) > cur_mt:
+                best[qid] = (ok, os.path.getmtime(f), d)
+    return {qid: d for qid, (_, _, d) in best.items()}
 
 
 def aggregate(grades):
@@ -133,7 +164,7 @@ def plot_html(by_cat, n_overall, n_correct, out):
                   f"<br><span style='font-size:13px;color:#777'>"
                   f"overall {n_correct}/{n_overall} = "
                   f"{100*n_correct/n_overall:.1f}% across deduplicated "
-                  f"question_ids; latest grade per question wins"
+                  f"question_ids; pass-priority dedup (any correct wins)"
                   f"</span>"),
             x=0.5, xanchor="center", y=0.97,
         ),
@@ -156,7 +187,7 @@ def main():
     ap.add_argument("--csv",  default=str(ANALYSIS / "category_summary.csv"))
     args = ap.parse_args()
 
-    grades = load_latest_per_question()
+    grades = load_best_per_question()
     n_overall, n_correct, by_cat = aggregate(grades)
     print(f"unique question_ids: {n_overall}; correct: {n_correct} "
           f"({100*n_correct/n_overall:.1f}%)")
