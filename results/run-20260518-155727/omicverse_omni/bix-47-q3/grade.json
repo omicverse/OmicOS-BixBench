@@ -1,0 +1,20 @@
+{
+  "run_id": "run-20260518-155727",
+  "agent_id": "omicverse_omni",
+  "question_id": "bix-47-q3",
+  "eval_mode": "str_verifier",
+  "categories": [
+    "Genomics",
+    "Genomic Variant Analysis"
+  ],
+  "correct": true,
+  "score": 1.0,
+  "final_answer": "NOTCH1",
+  "final_text": "The oldest male carrier is Sample ID 556 (Father, age 64.55, BLM Mutation Status = Carrier). His variant file `230209_Exome_GRCh38_CHIP_556-PF.xlsx` contains 649 CHIP-gene variants, of which 133 are non-reference (89 heterozygous + 44 homozygous). Aggregating by gene:\n\n- **NOTCH1**: 16 non-reference variants (the most)\n- CUX1: 9\n- JAK3: 8\n- ASXL1: 8\n- ... and so on.\n\nFINAL ANSWER: NOTCH1",
+  "grader_notes": "exact normalized match",
+  "error": null,
+  "elapsed_s": 126.56206809502328,
+  "tool_calls": 11,
+  "input_tokens": 214984,
+  "output_tokens": 3695
+}

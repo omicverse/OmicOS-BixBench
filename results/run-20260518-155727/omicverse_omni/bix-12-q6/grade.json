@@ -1,0 +1,21 @@
+{
+  "run_id": "run-20260518-155727",
+  "agent_id": "omicverse_omni",
+  "question_id": "bix-12-q6",
+  "eval_mode": "llm_verifier",
+  "categories": [
+    "Whole Genome Sequencing (WGS)",
+    "Genomics",
+    "Phylogenetics and Evolutionary Analysis"
+  ],
+  "correct": true,
+  "score": 1.0,
+  "final_answer": "6748.0",
+  "final_text": "The analysis computes parsimony-informative site counts from the MAFFT alignments in `scogs_animals.zip` (241 alignments) and `scogs_fungi.zip` (255 alignments). For each alignment, a site is parsimony-informative if it has at least two amino acid states each occurring in at least two sequences.\n\n- **Animals**: 219 of 241 alignments have zero parsimony-informative sites; max count = 29; median = 0\n- **Fungi**: 44 of 255 alignments have zero parsimony-informative sites; max count = 114; median = 17\n\nMann-Whitney U test (two-sided) comparing the two distributions:\n\n- U₁ (animals) = 6748.0  \n- U₂ (fungi) = 54707.0  \n- U₁ + U₂ = 61455 = n₁ × n₂ = 241 × 255 ✓\n\nFINAL ANSWER: 6748.0",
+  "grader_notes": "Both values are identical, so the agent's answer is correct.",
+  "error": null,
+  "elapsed_s": 318.94819154799916,
+  "tool_calls": 20,
+  "input_tokens": 397123,
+  "output_tokens": 9338
+}

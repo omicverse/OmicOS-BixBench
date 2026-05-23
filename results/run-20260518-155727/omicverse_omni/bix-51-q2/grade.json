@@ -1,0 +1,19 @@
+{
+  "run_id": "run-20260518-155727",
+  "agent_id": "omicverse_omni",
+  "question_id": "bix-51-q2",
+  "eval_mode": "range_verifier",
+  "categories": [
+    "Other"
+  ],
+  "correct": true,
+  "score": 1.0,
+  "final_answer": "111.81",
+  "final_text": "Both statsmodels and sklearn give the same AIC.\n\nThe logistic regression model fits the binary outcome `Efficacy_PR` (1 = PR; 0 = PD or SD) on BMI alone, using the 80 complete cases (41 observations were missing BMI). The fitted model converges (`coef_BMI = 0.168`, `p = 0.087`) with a log-likelihood of −53.906.\n\nFINAL ANSWER: 111.81",
+  "grader_notes": "value=111.81 in [111.8,111.82] (among [111.81])",
+  "error": null,
+  "elapsed_s": 67.63692168699345,
+  "tool_calls": 6,
+  "input_tokens": 103581,
+  "output_tokens": 1782
+}

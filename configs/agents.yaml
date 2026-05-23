@@ -1,0 +1,76 @@
+# Agents under evaluation.
+#
+# Matrix shape: ONE agent per question (first-match-wins). We measure
+# "what omicos's best-fit agent can do on each BixBench task", not "how
+# every agent performs against every task". Declare specialists FIRST
+# so their `question_ids` allowlist claims their natural fits before
+# the generalist catch-all sweeps the rest.
+#
+# Each agent declares ONE of:
+#   * `question_ids: [...]` — explicit allowlist. Recommended for
+#     specialists where the human has audited which BixBench tasks
+#     fit the agent's actual toolset / system-prompt focus.
+#   * `categories: [...]` — substring fallback against question
+#     `categories`. Less precise; only used when an explicit allowlist
+#     would be unmaintainable.
+#   * Neither — catch-all. Claims any question no earlier agent
+#     matched. Put exactly ONE catch-all at the end of the list.
+#
+# Selection methodology (see README → "Agent selection methodology"):
+#   1. Read each agent's frontmatter (use_when, toolsets, skills).
+#   2. Read each of the 50 question texts (not just categories).
+#   3. Assign a specialist ONLY when its workflow is the natural fit
+#      AND it's better than the generalist baseline. When in doubt,
+#      leave the question to `omicverse_omni`.
+#
+# Specialists deliberately NOT included (no matching BixBench task):
+#   - single_cell_*, spatial_omics_*, microbiome_*, metabolomics_*
+#     (no scRNA, Visium, 16S amplicon, LC-MS peak data in this 50-set)
+#   - c3ca_phase_runner, cellchat_rust_h5ad_runner (no NMF / CellChat)
+#   - structural_biologist, binder_designer, antibody_engineer,
+#     primer_design_assistant (no structure / design tasks)
+#   - variant_analyst — its `protein-variant-effect` skill scores
+#     pathogenicity per-mutation (ESM-2 LLR / ClinVar). BixBench's
+#     "variant" questions are population counts, not pathogenicity.
+
+agents:
+  # ----- Specialist: bulk RNA-seq DEG + enrichment (14 questions) -----
+  - id: bulk_rna_analyst
+    tier: community
+    rationale: |
+      Bulk RNA-seq DEG + enrichment specialist. System prompt enforces
+      registry_lookup, method selection (DESeq2 vs ttest), and
+      multi-stage validation — should beat the generalist on standard
+      DESeq2-shape questions and KEGG/GO/Reactome/WikiPathways
+      enrichment. Also a fit for two proteomics fold-change questions
+      that have the same DEG shape.
+    question_ids:
+      - bix-27-q5    # PCA on log10 expression × metadata (joint-table alignment)
+      - bix-43-q2    # odds ratio for p53 Reactome enrichment after DEG
+      - bix-43-q4    # log2 FC, CBD/cisplatin vs DMSO
+      - bix-49-q4    # total DEG count via DESeq2
+      - bix-30-q3    # ratio of significant DE miRNAs
+      - bix-53-q2    # DEG on RNA-seq
+      - bix-53-q5    # gseapy + WikiPathways enrichment fraction
+      - bix-31-q2    # batch-corrected DEG (batch as covariate)
+      - bix-24-q2    # DEG (padj < 0.05, |log2FC| > ...)
+      - bix-46-q4    # log2 FC value
+      - bix-26-q3    # upregulated genes in FeMinus + enrichment
+      - bix-26-q5    # KEGG enrichment, P. aeruginosa
+      - bix-32-q2    # KEGG ORA on signed DEGs
+      - bix-37-q1    # proteomics ENO fold change (DEG-shape)
+      - bix-37-q4    # proteomics log2 FC (DEG-shape)
+
+  # ----- Catch-all generalist: everything else (36 questions) ----------
+  # Phylogenetics, BUSCO, treeness, patristic distance, variant counting,
+  # imaging / colony area / swarming, epigenomics methylation density,
+  # expression-essentiality correlation, PCA / regression.
+  # No earlier-listed specialist has the right toolset for these, so
+  # this catch-all sweeps them all. No `question_ids` / `categories`
+  # filter — claims every question not already taken above.
+  - id: omicverse_omni
+    tier: community
+    rationale: |
+      Community-tier generalist orchestrator. Default user experience.
+      Owns the 36 questions for which no specialist exists or is a
+      better fit.

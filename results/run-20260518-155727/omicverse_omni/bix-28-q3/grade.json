@@ -1,0 +1,21 @@
+{
+  "run_id": "run-20260518-155727",
+  "agent_id": "omicverse_omni",
+  "question_id": "bix-28-q3",
+  "eval_mode": "llm_verifier",
+  "categories": [
+    "Whole Genome Sequencing (WGS)",
+    "Genomics",
+    "Phylogenetics and Evolutionary Analysis"
+  ],
+  "correct": true,
+  "score": 1.0,
+  "final_answer": "-30.4551",
+  "final_text": "The PhyKIT source code reveals the LB score formula is `((mean_pairwise / avg_all_pairwise) - 1) * 100`, and it has a known bug where `set(tip)` creates a set of *characters* rather than a set containing the tip, so the current taxon's self-distance (0) is included in the mean. The per-taxon scores are:\n\n- Fungi_Ncra: -29.4826\n- Fungi_Scer: -32.1541\n- Fungi_Spom: -31.4275\n- Fungi_Umay: -6.9357\n\nSorted: [-32.1541, -31.4275, -29.4826, -6.9357]. Median = (−31.4275 + −29.4826) / 2 = -30.4551.\n\nFINAL ANSWER: -30.4551",
+  "grader_notes": "The agent's answer matches the ideal exactly.",
+  "error": null,
+  "elapsed_s": 312.5554828479653,
+  "tool_calls": 28,
+  "input_tokens": 615484,
+  "output_tokens": 7666
+}

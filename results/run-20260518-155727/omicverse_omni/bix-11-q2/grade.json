@@ -1,0 +1,20 @@
+{
+  "run_id": "run-20260518-155727",
+  "agent_id": "omicverse_omni",
+  "question_id": "bix-11-q2",
+  "eval_mode": "llm_verifier",
+  "categories": [
+    "Genomics",
+    "Phylogenetics and Evolutionary Analysis"
+  ],
+  "correct": false,
+  "score": 0.0,
+  "final_answer": "Hit the iteration safety cap (default 100). This usually means the model is stuck in a tool-call loop. Cancel the turn and rephrase, or raise `max_tool_iterations` in the chat config.",
+  "final_text": "Hit the iteration safety cap (default 100). This usually means the model is stuck in a tool-call loop. Cancel the turn and rephrase, or raise `max_tool_iterations` in the chat config.",
+  "grader_notes": "The agent failed to provide the numeric percentage; it only returned an error message about hitting an iteration cap.",
+  "error": null,
+  "elapsed_s": 546.2957207220024,
+  "tool_calls": 38,
+  "input_tokens": 800347,
+  "output_tokens": 8093
+}

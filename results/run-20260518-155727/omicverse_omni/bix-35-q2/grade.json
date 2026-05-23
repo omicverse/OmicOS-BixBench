@@ -1,0 +1,21 @@
+{
+  "run_id": "run-20260518-155727",
+  "agent_id": "omicverse_omni",
+  "question_id": "bix-35-q2",
+  "eval_mode": "llm_verifier",
+  "categories": [
+    "Whole Genome Sequencing (WGS)",
+    "Genomics",
+    "Phylogenetics and Evolutionary Analysis"
+  ],
+  "correct": false,
+  "score": 0.0,
+  "final_answer": "1820.5",
+  "final_text": "The data contains 100 animal gene trees and 249 fungal gene trees, with 96 orthogroups in common. For each common orthogroup, I computed evolutionary rates using `phykit evo_rate` (total tree length / number of terminals). The animal mean rate was 0.452 and the fungal mean rate was 0.747. The Mann-Whitney U test on these 96 paired measurements gives:\n\nFINAL ANSWER: 1820.5",
+  "grader_notes": "The agent's Mann-Whitney U statistic value (1820.5) deviates from the ideal (3661) by more than 50%, far outside the allowed 3% relative error tolerance.",
+  "error": null,
+  "elapsed_s": 305.7602057509939,
+  "tool_calls": 17,
+  "input_tokens": 260516,
+  "output_tokens": 5052
+}

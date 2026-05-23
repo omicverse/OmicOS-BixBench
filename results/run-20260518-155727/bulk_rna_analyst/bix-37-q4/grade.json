@@ -1,0 +1,21 @@
+{
+  "run_id": "run-20260518-155727",
+  "agent_id": "bulk_rna_analyst",
+  "question_id": "bix-37-q4",
+  "eval_mode": "str_verifier",
+  "categories": [
+    "Differential Expression Analysis",
+    "RNA-seq",
+    "Proteomics"
+  ],
+  "correct": true,
+  "score": 1.0,
+  "final_answer": "2.27",
+  "final_text": "FINAL ANSWER: 2.27",
+  "grader_notes": "exact normalized match",
+  "error": null,
+  "elapsed_s": 30.97323773696553,
+  "tool_calls": 4,
+  "input_tokens": 78111,
+  "output_tokens": 703
+}

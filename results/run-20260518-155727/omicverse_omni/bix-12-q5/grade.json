@@ -1,0 +1,21 @@
+{
+  "run_id": "run-20260518-155727",
+  "agent_id": "omicverse_omni",
+  "question_id": "bix-12-q5",
+  "eval_mode": "llm_verifier",
+  "categories": [
+    "Whole Genome Sequencing (WGS)",
+    "Genomics",
+    "Phylogenetics and Evolutionary Analysis"
+  ],
+  "correct": true,
+  "score": 1.0,
+  "final_answer": "29",
+  "final_text": "Both `1428854at2759.faa.mafft` and `570797at2759.faa.mafft` tie at **29** parsimony informative sites (under the standard definition that treats gaps as missing data).\n\nFINAL ANSWER: 29",
+  "grader_notes": "The agent's answer exactly matches the ideal answer of 29, so it is correct.",
+  "error": null,
+  "elapsed_s": 195.09246477205306,
+  "tool_calls": 14,
+  "input_tokens": 282341,
+  "output_tokens": 5552
+}

@@ -1,0 +1,21 @@
+{
+  "run_id": "rerun-literal-wording",
+  "agent_id": "omicverse_omni",
+  "question_id": "bix-35-q2",
+  "eval_mode": "llm_verifier",
+  "categories": [
+    "Whole Genome Sequencing (WGS)",
+    "Genomics",
+    "Phylogenetics and Evolutionary Analysis"
+  ],
+  "correct": true,
+  "score": 1.0,
+  "final_answer": "3661.0",
+  "final_text": "I extracted all `.treefile` gene trees from the workspace `scogs_animals.zip` and `scogs_fungi.zip`, then ran `phykit evo_rate` on each tree.\n\nCounts used:\n- Animals: 100 gene trees\n- Fungi: 249 gene trees\n- Scope: all available genes in each group, not restricted to shared orthogroups\n\nUsing SciPy `mannwhitneyu(animals_rates, fungi_rates, alternative=\"two-sided\")`, the Mann-Whitney U statistic for animals vs fungi was `3661.0`.\n\nFINAL ANSWER: 3661.0",
+  "grader_notes": "The agent's answer 3661.0 is identical to the ideal 3661 when considering numerical tolerance, as it falls exactly within the allowed 1 unit difference.",
+  "error": null,
+  "elapsed_s": 164.8314166860655,
+  "tool_calls": 11,
+  "input_tokens": 317491,
+  "output_tokens": 2615
+}

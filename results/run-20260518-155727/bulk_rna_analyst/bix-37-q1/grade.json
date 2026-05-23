@@ -1,0 +1,21 @@
+{
+  "run_id": "run-20260518-155727",
+  "agent_id": "bulk_rna_analyst",
+  "question_id": "bix-37-q1",
+  "eval_mode": "llm_verifier",
+  "categories": [
+    "Differential Expression Analysis",
+    "RNA-seq",
+    "Proteomics"
+  ],
+  "correct": true,
+  "score": 1.0,
+  "final_answer": "4.81",
+  "final_text": "The proteomics data contains one entry for ENO1 (Alpha-enolase, P06733). The columns `Normal` and `Tumor` give the protein abundance values, and the `FC` column gives the fold change (Tumor / Normal).\n\n- **Normal**: 7.29 × 10⁷\n- **Tumor**: 3.50 × 10⁸\n- **FC (Tumor / Normal)**: 4.81\n\nFINAL ANSWER: 4.81",
+  "grader_notes": "Agent's answer 4.81 matches the ideal's 4.81-fold increase numerically exactly.",
+  "error": null,
+  "elapsed_s": 30.786480401991867,
+  "tool_calls": 4,
+  "input_tokens": 79494,
+  "output_tokens": 718
+}

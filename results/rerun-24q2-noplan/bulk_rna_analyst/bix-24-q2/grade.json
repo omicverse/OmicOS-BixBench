@@ -1,0 +1,22 @@
+{
+  "run_id": "rerun-24q2-noplan",
+  "agent_id": "bulk_rna_analyst",
+  "question_id": "bix-24-q2",
+  "eval_mode": "llm_verifier",
+  "categories": [
+    "RNA-seq",
+    "Differential Expression Analysis",
+    "Transcriptomics",
+    "Sequence Analysis"
+  ],
+  "correct": true,
+  "score": 1.0,
+  "final_answer": "Downregulation primarily drives the metabolic effects of CBD treatment in CRC cells.",
+  "final_text": "I used the workspace count matrix and sample layout, aligned the sample IDs, and compared `CBD_IC50` against `DMSO` CRC cells.\n\nBrief work:\n- Contrast: `CBD_IC50` vs `DMSO`, 3 samples per group.\n- Differential expression threshold: `padj < 0.05` and `|log2FC| > 0.5`.\n- DESeq2 result after symbol mapping:\n  - Upregulated DEGs: 62 genes\n  - Downregulated DEGs: 134 genes\n- GO Biological Process enrichment was run separately for upregulated and downregulated genes.\n- The strongest metabolism-related GO BP terms were in the downregulated set:\n  - `canonical glycolysis (GO:0061621)`, adjusted p = 2.06e-4\n  - `glucose catabolic process to pyruvate (GO:0061718)`, adjusted p = 2.06e-4\n  - `glycolytic process through glucose-6-phosphate (GO:0061620)`, adjusted p = 2.06e-4\n  - `glycolytic process (GO:0006096)`, adjusted p = 3.39e-4\n  - `carbohydrate catabolic process (GO:0016052)`, adjusted p = 0.00134\n\nThese enriched metabolic processes were driven by downregulated genes including `GPI`, `PGK1`, `ALDOC`, `ENO2`, and `HK2`.\n\nFINAL ANSWER: Downregulation primarily drives the metabolic effects of CBD treatment in CRC cells.",
+  "grader_notes": "The agent answer explicitly states that downregulation primarily drives the metabolic effects, matching the ideal answer 'Downregulation'.",
+  "error": null,
+  "elapsed_s": 392.32425540301483,
+  "tool_calls": 49,
+  "input_tokens": 1437403,
+  "output_tokens": 9435
+}

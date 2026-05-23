@@ -1,0 +1,21 @@
+{
+  "run_id": "run-20260518-155727",
+  "agent_id": "omicverse_omni",
+  "question_id": "bix-22-q1",
+  "eval_mode": "str_verifier",
+  "categories": [
+    "Sequence Analysis",
+    "RNA-seq",
+    "Transcriptomics"
+  ],
+  "correct": true,
+  "score": 1.0,
+  "final_answer": "CD14",
+  "final_text": "All correlations are positive but very weak across all four cell types. CD14 shows the lowest absolute Pearson correlation (r ≈ 0.0317) between gene length and average expression for protein-coding genes, compared to CD4 (r ≈ 0.0617), CD8 (r ≈ 0.0551), and CD19 (r ≈ 0.0471).\n\nFINAL ANSWER: CD14",
+  "grader_notes": "exact normalized match",
+  "error": null,
+  "elapsed_s": 75.02690980798798,
+  "tool_calls": 7,
+  "input_tokens": 102696,
+  "output_tokens": 2085
+}

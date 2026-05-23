@@ -1,0 +1,21 @@
+{
+  "run_id": "run-20260518-155727",
+  "agent_id": "omicverse_omni",
+  "question_id": "bix-12-q4",
+  "eval_mode": "llm_verifier",
+  "categories": [
+    "Whole Genome Sequencing (WGS)",
+    "Genomics",
+    "Phylogenetics and Evolutionary Analysis"
+  ],
+  "correct": true,
+  "score": 1.0,
+  "final_answer": "6948.0",
+  "final_text": "The analysis is complete. Here's a summary of the work:\n\n**Data**: 241 animal SCG alignments and 255 fungal SCG alignments (`.faa.mafft` files from the `scogs_animals.zip` / `scogs_fungi.zip` archives).\n\n**Method**: For each multiple sequence alignment, a site is parsimony-informative if at least two different amino acids each appear in ≥2 sequences (gap-only columns excluded). The percentage of such sites was computed per alignment. Mann-Whitney U test (two-sided) compared the distributions.\n\n**Results**:\n- Animals: mean PI% = 0.26%, median = 0.00% (most alignments have zero informative sites)\n- Fungi: mean PI% = 3.36%, median = 3.54%\n- Mann-Whitney U (animals group) = 6948.0; p ≈ 1.0 × 10⁻⁵⁸\n\nFINAL ANSWER: 6948.0",
+  "grader_notes": "Both answers are identical (6948.0), so the agent's answer matches the ideal exactly.",
+  "error": null,
+  "elapsed_s": 166.4611803839798,
+  "tool_calls": 12,
+  "input_tokens": 192808,
+  "output_tokens": 4829
+}

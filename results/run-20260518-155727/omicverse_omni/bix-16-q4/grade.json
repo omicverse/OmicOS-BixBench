@@ -1,0 +1,20 @@
+{
+  "run_id": "run-20260518-155727",
+  "agent_id": "omicverse_omni",
+  "question_id": "bix-16-q4",
+  "eval_mode": "range_verifier",
+  "categories": [
+    "Transcriptomics",
+    "Functional Genomics"
+  ],
+  "correct": true,
+  "score": 1.0,
+  "final_answer": "20.9%",
+  "final_text": "The analysis used 1,103 cell lines with both expression (log TPM+1 batch-corrected) and CRISPR gene effect scores. Across the 17,676 genes present in both datasets, a Spearman rank correlation was computed per gene, followed by Benjamini-Hochberg FDR correction at α = 0.05. \n\n- 3,696 genes were significant (2,421 negative, 1,275 positive correlation)\n- 16,883 genes had sufficient variance in both measurements to compute a correlation\n\nFINAL ANSWER: 20.9%",
+  "grader_notes": "value=20.9 in [20.0,25.0] (among [20.9])",
+  "error": null,
+  "elapsed_s": 186.73548312403727,
+  "tool_calls": 14,
+  "input_tokens": 230984,
+  "output_tokens": 4323
+}

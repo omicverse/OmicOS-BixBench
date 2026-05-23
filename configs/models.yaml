@@ -1,0 +1,46 @@
+# DeepSeek model knob.
+#
+# omicos-core routes via provider=custom_openai when DEEPSEEK_API_BASE and
+# DEEPSEEK_API_KEY are exposed as CUSTOM_OPENAI_API_BASE / CUSTOM_OPENAI_API_KEY
+# at omicos-serve spawn time (handled by runner.py).
+#
+# Per DeepSeek docs (2026-05): deepseek-v4-pro and deepseek-v4-flash both have
+#   - context window: 1,000,000 tokens
+#   - max output:       384,000 tokens
+# Legacy IDs `deepseek-chat` / `deepseek-reasoner` are deprecated aliases of
+# v4-flash; we pin to v4-pro explicitly so a future server-side alias change
+# can't silently downgrade the run.
+#
+# omicos-core does NOT expose a per-request `max_tokens` knob; output capping
+# is left to the upstream provider's own default (DeepSeek = 384K for v4-pro).
+# We therefore configure only `model_context_window` here.
+
+# Model used for driving the omicos agent (the "subject under test").
+agent_model:
+  # Switched 2026-05-18 from deepseek-v4-pro → codex/gpt-5.5 after
+  # validating that GPT-5.5 autonomously loads boot-load skills + runs
+  # the pre-flight recipe in the sample-metadata-alignment workflow
+  # (DeepSeek stochastically skipped them). To revert: set provider=
+  # custom_openai + model=deepseek-v4-pro and remove the codex OAuth.
+  provider: codex
+  model: gpt-5.5
+  # temperature: intentionally unset — let upstream default.
+  model_context_window: 1000000
+  # Multi-step phylogenetics / WGS tasks (e.g. fungi-vs-animals treeness
+  # median diff) loop through file_manager + run_python_code many times;
+  # 30 was too tight and produced false-positive iteration-cap fails on
+  # legitimate work. 100 = omicos's own default; we just don't override
+  # downward anymore.
+  max_tool_iterations: 100
+  permission_mode: full        # unattended — no human approval gating
+  allow_shell: true
+  allow_file_write: true
+
+# Model used by grader.py's llm_verifier judge (independent of the agent).
+# Kept as a SEPARATE knob so we can keep the judge fixed even when we sweep
+# the agent model — otherwise judge / subject drift together and we can't
+# attribute score deltas to the agent.
+judge_model:
+  provider: custom_openai
+  model: deepseek-v4-pro
+  # temperature: intentionally unset.

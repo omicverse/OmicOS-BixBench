@@ -1,0 +1,21 @@
+{
+  "run_id": "run-20260518-155727",
+  "agent_id": "omicverse_omni",
+  "question_id": "bix-45-q1",
+  "eval_mode": "llm_verifier",
+  "categories": [
+    "Whole Genome Sequencing (WGS)",
+    "Genomics",
+    "Phylogenetics"
+  ],
+  "correct": false,
+  "score": 0.0,
+  "final_answer": "4.0286880579459005e-55",
+  "final_text": "The analysis is complete. Here's a summary:\n\n- 241 overlapping ortholog groups with MAFFT alignments in both animals and fungi\n- For each group, ran `phykit rcv` (which computes Relative Composition Variability per the Phillips & Penny 2003 method)\n- Animal RCV mean: 0.0818, Fungi RCV mean: 0.1980\n- Two-sided Mann-Whitney U test comparing the 241 animal vs 241 fungal RCV scores\n\nFINAL ANSWER: 4.0286880579459005e-55",
+  "grader_notes": "The agent's p-value (4.03e-55) differs from the ideal (7.70e-54) by about 95%, far exceeding the 3% relative error tolerance for numerical answers.",
+  "error": null,
+  "elapsed_s": 717.8903861620347,
+  "tool_calls": 15,
+  "input_tokens": 273977,
+  "output_tokens": 3576
+}

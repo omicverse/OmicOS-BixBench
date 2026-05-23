@@ -1,0 +1,21 @@
+{
+  "run_id": "run-20260518-155727",
+  "agent_id": "bulk_rna_analyst",
+  "question_id": "bix-49-q4",
+  "eval_mode": "str_verifier",
+  "categories": [
+    "RNA-seq",
+    "Differential Expression Analysis",
+    "Transcriptomics"
+  ],
+  "correct": true,
+  "score": 1.0,
+  "final_answer": "2101",
+  "final_text": "The DESeq2 analysis with apeglm LFC shrinkage, using the design `~ condition + sex` (controlling for sex as a covariate), comparing ASXL1 vs Control, finds **2101** significantly differentially expressed genes at padj < 0.05.\n\nFINAL ANSWER: 2101",
+  "grader_notes": "numeric tolerance: |2101.0 - 2118.0| = 17 ≤ 21.18",
+  "error": null,
+  "elapsed_s": 394.1523807210033,
+  "tool_calls": 27,
+  "input_tokens": 618357,
+  "output_tokens": 9657
+}

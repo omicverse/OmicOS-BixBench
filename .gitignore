@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Local env / secrets
+bench-env.sh
+.env
+.envrc
+.claude/
+
+# Runtime sweep artefacts — large, regeneratable
+results/*/workspace/
+results/*/*/*/workspace/
+results/*/*/*/trajectory.jsonl
+data/
+fixtures/
+logs/
+*.log
+*.out
+nohup.out
+uv.lock
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp

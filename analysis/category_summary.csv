@@ -1,0 +1,18 @@
+category,correct,total,pass_at_1_pct
+Genomics,15,20,75.0
+Transcriptomics,16,18,88.9
+RNA-seq,15,16,93.8
+Differential Expression Analysis,14,14,100.0
+Whole Genome Sequencing (WGS),9,14,64.3
+Phylogenetics and Evolutionary Analysis,10,13,76.9
+Sequence Analysis,9,9,100.0
+Functional Genomics,3,4,75.0
+Imaging,3,4,75.0
+Genomic Variant Analysis,4,4,100.0
+Epigenomics,3,3,100.0
+Proteomics,2,2,100.0
+Other,2,2,100.0
+SNP Analysis,1,2,50.0
+Antimicrobial Resistance,1,2,50.0
+Phylogenetics,0,1,0.0
+Machine Learning and Artificial Intelligence,0,1,0.0
