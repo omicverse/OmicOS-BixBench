@@ -77,6 +77,36 @@ domains. The remaining 10 % concentrates in WGS, single-question
 Antimicrobial / SNP / standalone Phylogenetics cells, and one
 Genomics-tagged failure.
 
+### Process quality — per task-type bucket
+
+![BixBench-Verified-50 process-quality radar by task category](analysis/radar_by_category.png)
+
+*Figure 3 · BixBench's harness is binary pass/fail; to recover
+process quality we send every best-per-question trajectory to
+DeepSeek-v4-pro as a judge and score **5 dimensions tuned for
+short-answer trajectories** — `data_exploration`,
+`method_selection`, `execution_correctness`, `answer_fidelity`, and
+`iteration_pattern` (0–100 each). The 17 raw BixBench category tags
+are collapsed into 4 mutually-exclusive buckets by priority
+assignment. The four polygons land within ~5 pp of each other — the
+agent's process quality is consistent across task categories at
+93–97. Cached scores: [`analysis/radar_grades_v2.jsonl`](analysis/radar_grades_v2.jsonl).*
+
+### Process quality — passing vs failing cells
+
+![BixBench-Verified-50 process-quality radar by harness outcome](analysis/radar_pass_vs_fail.png)
+
+*Figure 4 · Same 5-dim judging, split by BixBench's binary harness
+verdict. **`answer_fidelity`** and **`iteration_pattern`** are
+indistinguishable between passing (n=45) and failing (n=5) cells —
+the failing trajectories format their answers correctly and recover
+gracefully from intermediate errors. The 13-pp `data_exploration`
+dip in failing cells is driven by the judge inferring domain
+best-practice steps the question text does not explicitly request
+(e.g. "shared orthologs", "filter low-quality variants"); see the
+[per-task failure-case docs](docs/failure-cases/README.md) for the
+spec-vs-method analysis on the 4 trajectory-clean failures.*
+
 ### Per-question adjustment ledger
 
 Five of the 50 questions required a documented loosening of the
@@ -96,15 +126,15 @@ Every rule change is reversible — restore the corresponding block in
 `src/omicos_bixbench/grader.py` to get strict BixBench semantics back.
 The full revert recipe per rule is in `docs/grading-deviations.md`.
 
-**The 5 remaining failures** are discussed in detail in `docs/omicos-bixbench-evaluation-report.md`:
+**The 5 remaining failures** are discussed in detail in `docs/omicos-bixbench-evaluation-report.md`, with per-task spec analysis under [`docs/failure-cases/`](docs/failure-cases/README.md):
 
 - `bix-16-q1` — DepMap essentiality sign convention. **Real agent knowledge gap.**
-- `bix-34-q2` — PhyKIT median-of-six convention. Benchmark artifact (gold answer assumes a specific tool with no instruction to use it).
-- `bix-45-q1` — scipy MWU at the 10⁻⁵⁴ floating-point edge. Benchmark artifact (gold from R produces a different floating-point answer than scipy at that magnitude).
-- `bix-54-q7` — R `ns(df=4)` knot-placement drift. Benchmark artifact (gold from R's `splines::ns`; Python ports place knots slightly differently).
-- `bix-61-q5` — provided VCF vs re-call. Benchmark artifact (gold expects a value from the dataset's provided VCF; the agent legitimately re-called variants).
+- `bix-34-q2` — gold uses PhyKIT's `pairwise_distances` median convention; the question asks for "median patristic distance" without naming PhyKIT.
+- `bix-45-q1` — question says "MWU between animal and fungal orthologs"; gold corresponds to the intersection (shared orthologs only). [doc](docs/failure-cases/bix-45-q1-question-does-not-specify-shared-orthologs.md)
+- `bix-54-q7` — R `splines::ns(df=4)` knot placement drift; the question does not name R or any specific knot recipe.
+- `bix-61-q5` — question asks for "Ts/Tv ratio for the MDR sample"; gold corresponds to a filtered VCF, the agent reports the raw-VCF value. [doc](docs/failure-cases/bix-61-q5-question-does-not-specify-variant-filtering.md)
 
-If you disagree with the 4 reclassifications-as-benchmark-artifact, count those 4 as failures too — the raw model-accuracy number then becomes 41/50 = 82 %, still above every non-Biomni agent on the published leaderboard.
+If you disagree with the 4 reclassifications-as-spec-issue, count those 4 as failures too — the raw model-accuracy number then becomes 41/50 = 82 %, still above every non-Biomni agent on the published leaderboard.
 
 ## What this measures
 
