@@ -69,7 +69,7 @@ DEFAULT_ADMIN_AGENTS_DIR = (
 )
 DEFAULT_RUNTIME_AGENTS_DIR = (
     os.path.expanduser("~/omicverse/omicos-runtime/")
-    ".omicos/cloud-agents/agents"
+    + ".omicos/cloud-agents/agents"
 )
 
 
