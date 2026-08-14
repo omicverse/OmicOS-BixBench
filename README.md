@@ -158,9 +158,8 @@ product can do, not how omicos performs through a constrained interface.
 cp bench-env.template.sh bench-env.sh   # then $EDITOR; fill HF_TOKEN, API keys
 source bench-env.sh
 
-# 1. Install omicos  (https://github.com/omicverse/omicos — coming soon)
-pip install omicos
-# Or local build per the omicos repo's instructions.
+# 1. Install omicos  (https://github.com/omicverse/omicos)
+npm install -g @omicverse/omicos
 
 # 2. Fetch BixBench-Verified-50 (gated on HF; accept terms first)
 uv run omicos-bixbench fetch
